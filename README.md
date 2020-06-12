@@ -7,7 +7,7 @@ A simple react native app which showcases
 - Stat management [ using Context API of React ]
 
 Demo
-![](demo.gif)
+![](./app/assets/demo.gif)
 
 # How to run the project locally
 
