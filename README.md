@@ -6,7 +6,8 @@ A simple react native app which showcases
 - Styling [ using Flexbox ]
 - Stat management [ using Context API of React ]
 
-Demo
+### Demo
+
 ![](./app/assets/demo.gif)
 
 # How to run the project locally
