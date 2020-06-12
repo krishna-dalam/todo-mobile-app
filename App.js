@@ -1,19 +1,44 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-export default function App() {
+import { ContextProvider } from "./app/context/AppContext";
+import HomeScreen from "./app/screens/HomeScreen";
+import AddTodoScreen from "./app/screens/AddTodoScreen";
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <ContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Todo"
+            component={HomeScreen}
+            options={{
+              headerTintColor: "white",
+              headerStyle: {
+                backgroundColor: "#0078ff",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Add Todo"
+            component={AddTodoScreen}
+            options={{
+              headerTintColor: "white",
+              headerStyle: {
+                backgroundColor: "#0078ff",
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ContextProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+//Color palette : Player to Miles Color Palette
