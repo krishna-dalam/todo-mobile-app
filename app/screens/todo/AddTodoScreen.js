@@ -1,30 +1,45 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet } from "react-native";
 
-import { TodoContext } from "../context/AppContext";
-import ButtonComponent from "../components/ButtonComponent";
-import TextInputComponent from "../components/TextInputComponent";
+import { TodoContext } from "../../context/AppContext";
+import { default as Button } from "../../components/ButtonComponent";
+import { default as Input } from "../../components/TextInputComponent";
+import AsyncStorage from "@react-native-community/async-storage";
+
+const storeData = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 function AddTodoScreen({ navigation }) {
   const [todos, setTodos] = useContext(TodoContext);
   const [todo, setTodo] = useState("");
-
+  const key = Date.now();
+  const value = { checked: false, key, value: todo };
   const addTodo = () => {
     if (todo.length > 0) {
-      setTodos([...todos, { checked: false, key: Date.now(), value: todo }]);
+      setTodos([...todos, value]);
     }
+    const jsonTodo = JSON.stringify(value);
+    storeData(key, jsonTodo);
     navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
-      <TextInputComponent
+      <Input
         onChangeText={(text) => setTodo(text)}
         placeholder="Ex: Complete XYZ... task"
+        multiline={true}
       />
-      <ButtonComponent
+      <Button
         buttonStyle={styles.button}
         textStyle={styles.text}
         onPress={addTodo}
+        title="Add Todo"
       />
     </View>
   );

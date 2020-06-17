@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 
-import { TodoContext } from "../context/AppContext";
-import TodoItemComponent from "../components/TodoItemComponent";
-import IconComponent from "../components/IconComponent";
+import { TodoContext } from "../../context/AppContext";
+import { default as TodoItem } from "../../components/TodoItemComponent";
+import { default as Icon } from "../../components/IconComponent";
 
 function HomeScreen({ navigation }) {
   const [todos, setTodos] = useContext(TodoContext);
@@ -36,7 +36,7 @@ function HomeScreen({ navigation }) {
           data={todos}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TodoItemComponent
+            <TodoItem
               checked={item.checked}
               onCheckboxClick={() => onCheckboxClick(item.key)}
               onDeleteClick={() => onDeleteClick(item.key)}
@@ -50,7 +50,7 @@ function HomeScreen({ navigation }) {
           style={styles.iconContainer}
           onPress={() => navigation.navigate("Add Todo")}
         >
-          <IconComponent iconStyle={styles.icon} size={62} />
+          <Icon iconStyle={styles.icon} size={62} />
         </TouchableOpacity>
       </View>
     </View>

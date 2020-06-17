@@ -1,41 +1,14 @@
-import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
 
-import { ContextProvider } from "./app/context/AppContext";
-import HomeScreen from "./app/screens/HomeScreen";
-import AddTodoScreen from "./app/screens/AddTodoScreen";
-
-const Stack = createStackNavigator();
+import TodoApp from "./app/TodoApp";
+import { AuthContextProvider } from "./app/context/AuthContext";
 
 function App() {
+  // setSignedIn({ token: true });
   return (
-    <ContextProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Todo"
-            component={HomeScreen}
-            options={{
-              headerTintColor: "white",
-              headerStyle: {
-                backgroundColor: "#0078ff",
-              },
-            }}
-          />
-          <Stack.Screen
-            name="Add Todo"
-            component={AddTodoScreen}
-            options={{
-              headerTintColor: "white",
-              headerStyle: {
-                backgroundColor: "#0078ff",
-              },
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ContextProvider>
+    <AuthContextProvider>
+      <TodoApp />
+    </AuthContextProvider>
   );
 }
 

@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, TouchableHighlight, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-function ButtonComponent({ buttonStyle, onPress, textStyle }) {
+function ButtonComponent({ title, buttonStyle, onPress, textStyle }) {
   return (
-    <TouchableHighlight onPress={onPress} style={[styles.button, buttonStyle]}>
-      <Text style={textStyle}>{"Add Todo"}</Text>
-    </TouchableHighlight>
+    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
+      <Text style={textStyle}>{title}</Text>
+    </TouchableOpacity>
   );
 }
 
